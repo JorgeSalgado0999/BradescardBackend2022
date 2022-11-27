@@ -1,0 +1,35 @@
+### test root
+GET http://localhost:8080
+
+
+### obtener todos los partners
+GET http://localhost:8080/partners
+
+### obtener un partner por id
+GET http://localhost:8080/partners/{id}
+
+### crear un partner
+POST http://localhost:8080/partners
+Content-Type: application/json
+
+{
+  "name": "partner 2",
+  "image": "url",
+}
+
+
+### stores routes 
+### obtener todas las tiendas 
+GET http://localhost:8080/stores
+
+### obtener todas las tiendas de un partner
+GET http://localhost:8080/partners/1/stores
+
+### crear una tienda
+POST http://localhost:8080/stores
+Content-Type: application/json
+
+{
+  "name": "tienda 4",
+  "partnerID": 2
+}
