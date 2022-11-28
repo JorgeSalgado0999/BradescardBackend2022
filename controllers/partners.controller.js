@@ -2,8 +2,8 @@ import {Partner} from "../models/partner.js";
 import {Store} from "../models/store.js";
 
 export const getPartners = async (req, res) => {
-	const agents = await Partner.findAll();
-	res.send(agents);
+	const partners = await Partner.findAll();
+	res.send(partners);
 };
 
 export const createPartner = async (req, res) => {

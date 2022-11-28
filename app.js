@@ -7,6 +7,8 @@ import {Review} from "./models/Review.js";
 
 import partnersRoutes from "./routes/partners.routes.js";
 import storesRoutes from "./routes/stores.routes.js";
+import agentsRoutes from "./routes/agents.routes.js";
+import reviewsRoutes from "./routes/reviews.routes.js";
 
 const app = express();
 
@@ -20,5 +22,7 @@ await Review.sync();
 
 app.use(partnersRoutes);
 app.use(storesRoutes);
+app.use(agentsRoutes);
+app.use(reviewsRoutes);
 
 export default app;

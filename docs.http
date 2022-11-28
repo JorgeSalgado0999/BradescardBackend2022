@@ -33,3 +33,21 @@ Content-Type: application/json
   "name": "tienda 4",
   "partnerID": 2
 }
+
+
+
+### reviews
+
+GET http://localhost:8080/reviews
+
+###
+POST http://localhost:8080/reviews
+Content-Type: application/json
+
+{
+  "relationalID": 1,
+  "name": "si jala :)",
+  "age":3,
+  "storeID": 1,
+  "otro": "smn"
+}
