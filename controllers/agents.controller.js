@@ -1,5 +1,4 @@
 import {Partner} from "../models/partner.js";
-import {Store} from "../models/store.js";
 import {Agent} from "../models/Agent.js";
 
 export const getAgents = async (req, res) => {
@@ -9,9 +8,10 @@ export const getAgents = async (req, res) => {
 
 export const createAgent = async (req, res) => {
 	console.log(req.body);
+	console.log("entra a crear agente");
 	try {
 		const {username} = req.body;
-		const newAgent = await Partner.create({
+		const newAgent = await Agent.create({
 			username,
 		});
 		res.json(newAgent);

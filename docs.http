@@ -34,6 +34,16 @@ Content-Type: application/json
   "partnerID": 2
 }
 
+### agents
+GET http://localhost:8080/agents
+
+###
+POST http://localhost:8080/agents
+Content-Type: application/json
+
+{
+  "username": "Jorge Salgado"
+}
 
 
 ### reviews
