@@ -1,0 +1,31 @@
+app: serverless-ci-cd
+service: serverless-ci-cd
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: us-east-1
+  iam:
+    role: arn:aws:iam::272772253521:role/serverless-test-dev-us-east-1-lambdaRole
+
+functions:
+  api:
+    handler: ./dist/app.handler  	
+    vpc:
+      securityGroupIds:
+        - sg-04074736a1221ca69
+        - sg-09c29a92e6812961c
+      subnetIds:
+        - subnet-0f80f5c6a0b6f0bde
+        - subnet-044196a07768234c7
+        - subnet-0625b6897e0f70f35
+        - subnet-0a872b06c6b508273
+        - subnet-05e79b4c9f4797066
+    environment:
+      ENVIROMENT: prod
+      SQL_HOST : ${env:SQL_HOST}
+      SQL_USER: ${env:SQL_USER}
+      SQL_PASSWORD: ${env:SQL_PASSWORD}
+    events:
+      - httpApi: "*"

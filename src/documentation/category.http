@@ -1,0 +1,12 @@
+### Create new category
+POST http://localhost:3001/question-category/
+Content-Type: application/json
+
+{
+  "data":{
+    "category": "categoria 1"
+  }
+}
+
+### Get all categories
+GET http://localhost:3001/question-category/

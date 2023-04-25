@@ -1,0 +1,32 @@
+###
+POST http://localhost:3001/user/
+Content-Type: application/json
+
+{
+    "data": {
+        "email": "jorgesalgado_dev@outlook.com",
+        "password": "Brades123",
+        "firstName": "Jorge Luis",
+        "lastName": "Salgado Ledezma",       
+        "nickname": "Jorge Salgado",
+        "gender": "1",
+        "userRole": "admin"
+    }
+}
+
+###
+GET http://localhost:3001/user/
+authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impvcmdlc2FsZ2Fkb19kZXZAb3V0bG9vay5jb20iLCJpZCI6MiwiaWF0IjoxNjc3NDcyNjA5LCJleHAiOjE2Nzc0ODM0MDl9.GAhA_BViLkI-3hy7rVqFnvRVS8xQQWMJuvQlJfi6_1E
+###
+DELETE http://localhost:3001/user/2
+
+###
+POST http://localhost:3001/auth/
+Content-Type: application/json
+
+{
+    "data": {
+        "email": "jorgesalgado_dev@outlook.com",
+        "password": "Brades123"
+    }
+}

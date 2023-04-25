@@ -1,0 +1,8 @@
+### Config Routes
+
+### Create DB Schema 
+GET http://localhost:3001/config/sync-db
+### Create User Roles 
+GET http://localhost:3001/config/createUserRoles
+### Create States 
+GET http://localhost:3001/config/createStates

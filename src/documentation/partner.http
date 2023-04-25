@@ -1,0 +1,12 @@
+### Create new partner
+POST http://localhost:3001/partner/
+Content-Type: application/json
+
+{
+  "data":{
+    "name": "Partner 1"
+  }
+}
+
+### Get all partners
+GET http://localhost:3001/partner/

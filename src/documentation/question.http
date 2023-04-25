@@ -1,0 +1,10 @@
+### Create new Question
+POST http://localhost:3001/question/
+Content-Type: application/json
+
+{
+  "data":{
+    "question": "pregunta 1",
+    "CategoryId": 1
+  }
+}

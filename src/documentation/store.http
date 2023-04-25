@@ -1,0 +1,20 @@
+### Create new partner
+POST http://localhost:3001/store/
+Content-Type: application/json
+
+{
+  "data":{
+    "name": "Tienda 1",
+    "partnerId": "1",
+    "state": "Aguascalientes",
+    "street": "string",
+    "exteriorNumber": 1,
+    "interiorNumber": 1,
+    "city": "zapopan",
+    "suburb": "Jardines del Country",
+    "postalCode": 45019
+  }
+}
+
+### Obtener todos los partners
+GET http://localhost:3001/partner/
