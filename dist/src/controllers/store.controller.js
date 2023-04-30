@@ -13,9 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getStores = exports.createStore = void 0;
-const sequelize_1 = require("sequelize");
 const securityFunctions_1 = require("../helpers/securityFunctions");
-const Partner_1 = __importDefault(require("../models/Partner"));
 const Store_1 = __importDefault(require("../models/Store"));
 const utils_1 = require("../helpers/utils");
 const State_1 = __importDefault(require("../models/State"));
@@ -126,19 +124,20 @@ const createStore = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.createStore = createStore;
 const getStores = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { page, limit, name } = req.query;
+        const { page, limit, partnerId } = req.query;
+        console.log(req.query);
         const _page = page && typeof page == "string" ? parseInt(page) - 1 : 0;
         const _limit = limit && typeof limit == "string" ? parseInt(limit) : 10;
         var where;
-        if (name) {
-            where = { slug: { [sequelize_1.Op.like]: "%" + name + "%" } };
+        if (partnerId) {
+            where = { PartnerId: partnerId };
         }
-        const storesFound = yield Partner_1.default.findAll({
+        const storesFound = yield Store_1.default.findAll({
             where: where,
             offset: _limit * _page,
             limit: _limit,
         });
-        console.log(storesFound);
+        // console.log(storesFound);
         const data = storesFound.map((store) => store.get());
         res.json({
             status: true,

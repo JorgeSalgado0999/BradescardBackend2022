@@ -120,23 +120,24 @@ export const createStore = async (req: Request, res: Response) => {
 
 export const getStores = async (req: Request, res: Response) => {
 	try {
-		const {page, limit, name} = req.query;
+		const {page, limit, partnerId} = req.query;
+		console.log(req.query);
 
 		const _page = page && typeof page == "string" ? parseInt(page) - 1 : 0;
 		const _limit = limit && typeof limit == "string" ? parseInt(limit) : 10;
 
 		var where;
 
-		if (name) {
-			where = {slug: {[Op.like]: "%" + name + "%"}};
+		if (partnerId) {
+			where = {PartnerId: partnerId};
 		}
 
-		const storesFound = await Partner.findAll({
+		const storesFound = await Store.findAll({
 			where: where,
 			offset: _limit * _page,
 			limit: _limit,
 		});
-		console.log(storesFound);
+		// console.log(storesFound);
 		const data = storesFound.map((store) => store.get());
 
 		res.json({

@@ -13,7 +13,7 @@ export const createPartner = async (req: Request, res: Response) => {
 		if (!data) {
 			res.status(400).json({
 				status: false,
-				message: "No hay una agencia para agregar",
+				message: "No hay información para agregar",
 			});
 			return;
 		}

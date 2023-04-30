@@ -23,7 +23,7 @@ const createPartner = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         if (!data) {
             res.status(400).json({
                 status: false,
-                message: "No hay una agencia para agregar",
+                message: "No hay información para agregar",
             });
             return;
         }

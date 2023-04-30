@@ -12,11 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createUser = exports.getUsers = void 0;
+exports.validateUser = exports.createUser = exports.getUsers = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const securityFunctions_1 = require("../helpers/securityFunctions");
 const UserRole_1 = __importDefault(require("../models/UserRole"));
 const User_1 = __importDefault(require("../models/User"));
+const roles_1 = require("../helpers/roles");
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const users = yield User_1.default.findAll();
@@ -124,4 +125,23 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.createUser = createUser;
+const validateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { userId } = req.params;
+    try {
+        const user = yield User_1.default.findOne({ where: { id: userId } });
+        res.json({
+            status: true,
+            user: {
+                id: user.id,
+                email: user.email,
+                nickname: user.nickname,
+                role: roles_1.roles[user.UserRoleId],
+            },
+        });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+exports.validateUser = validateUser;
 //# sourceMappingURL=user.controller.js.map

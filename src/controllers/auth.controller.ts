@@ -13,6 +13,7 @@ import UserRole from "../models/UserRole";
 
 import User from "../models/User";
 import {My_SECRET} from "../helpers/constants";
+import {roles} from "../helpers/roles";
 
 export const login = async (req: Request, res: Response) => {
 	try {
@@ -76,7 +77,12 @@ export const login = async (req: Request, res: Response) => {
 
 			res.json({
 				status: true,
-				token: userToken,
+				data: {
+					token: userToken,
+					id: user.id,
+					nickname: user.nickname,
+					role: roles[user.UserRoleId],
+				},
 			});
 		});
 	} catch (ex) {

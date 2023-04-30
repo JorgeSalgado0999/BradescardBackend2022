@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "data":{
-    "name": "Tienda 1",
+    "name": "Tienda 2",
     "partnerId": "1",
     "state": "Aguascalientes",
     "street": "string",
@@ -16,5 +16,5 @@ Content-Type: application/json
   }
 }
 
-### Obtener todos los partners
-GET http://localhost:3001/partner/
+### Obtener todas las tiendas
+GET http://localhost:3001/store/?partnerId=1

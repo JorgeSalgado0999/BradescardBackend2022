@@ -5,6 +5,7 @@ import UserInterface from "../interfaces/User";
 import UserRole from "../models/UserRole";
 
 import User from "../models/User";
+import {roles} from "../helpers/roles";
 
 export const getUsers = async (req: Request, res: Response) => {
 	try {
@@ -124,5 +125,25 @@ export const createUser = async (req: Request, res: Response) => {
 	} catch (ex) {
 		console.log(ex);
 		handleError(res, ex);
+	}
+};
+
+export const validateUser = async (req: Request, res: Response) => {
+	const {userId} = req.params;
+
+	try {
+		const user: any = await User.findOne({where: {id: userId}});
+
+		res.json({
+			status: true,
+			user: {
+				id: user.id,
+				email: user.email,
+				nickname: user.nickname,
+				role: roles[user.UserRoleId],
+			},
+		});
+	} catch (error: any) {
+		res.status(500).json({message: error.message});
 	}
 };

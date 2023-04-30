@@ -17,6 +17,7 @@ const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const jsonwebtoken_1 = require("jsonwebtoken");
 const securityFunctions_1 = require("../helpers/securityFunctions");
 const User_1 = __importDefault(require("../models/User"));
+const roles_1 = require("../helpers/roles");
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { data } = req.body;
@@ -67,7 +68,12 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             }, "Brades@ComplianceApp2022#", { algorithm: "HS256", expiresIn: "5h" });
             res.json({
                 status: true,
-                token: userToken,
+                data: {
+                    token: userToken,
+                    id: user.id,
+                    nickname: user.nickname,
+                    role: roles_1.roles[user.UserRoleId],
+                },
             });
         });
     }

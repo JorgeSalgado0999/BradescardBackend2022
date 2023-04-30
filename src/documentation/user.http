@@ -16,7 +16,11 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3001/user/
-authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impvcmdlc2FsZ2Fkb19kZXZAb3V0bG9vay5jb20iLCJpZCI6MiwiaWF0IjoxNjc3NDcyNjA5LCJleHAiOjE2Nzc0ODM0MDl9.GAhA_BViLkI-3hy7rVqFnvRVS8xQQWMJuvQlJfi6_1E
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impvcmdlc2FsZ2Fkb19kZXZAb3V0bG9vay5jb20iLCJpZCI6MSwiaWF0IjoxNjgyNzk5NDY1LCJleHAiOjE2ODI4MTc0NjV9.2t5cnPP9rCcwc7C3J7eB4Wwx-2VLsRDlgCmO-xvxGAg
+
+###
+GET http://localhost:3001/user/1
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impvcmdlc2FsZ2Fkb19kZXZAb3V0bG9vay5jb20iLCJpZCI6MSwiaWF0IjoxNjgyNzk5NDY1LCJleHAiOjE2ODI4MTc0NjV9.2t5cnPP9rCcwc7C3J7eB4Wwx-2VLsRDlgCmO-xvxGAg
 ###
 DELETE http://localhost:3001/user/2
 
