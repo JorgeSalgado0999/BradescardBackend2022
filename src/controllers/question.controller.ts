@@ -68,12 +68,52 @@ export const getQuestions = async (req: Request, res: Response) => {
 			where = {slug: {[Op.like]: "%" + name + "%"}};
 		}
 
-		const categoriesFound = await QuestionCategory.findAll({
+		const categoriesFound = await Question.findAll({
 			where: where,
 			offset: _limit * _page,
 			limit: _limit,
 		});
 		const data = categoriesFound.map((partner: any) => partner.get());
+
+		res.json({
+			status: true,
+			data,
+		});
+	} catch (ex) {
+		handleError(res, ex);
+	}
+};
+
+export const getQuestionsByCategorie = async (req: Request, res: Response) => {
+	try {
+		let data: any = {};
+		// first get all categories
+		const categoriesFound = await QuestionCategory.findAll({
+			attributes: ["id", "category"],
+			order: [["id", "ASC"]],
+		});
+		const categories = categoriesFound.map((categorie: any) => categorie.get());
+
+		//This was necesary to avoid disorder
+		categories.map((category: any) => {
+			data[category.category] = {};
+		});
+
+		// now we look for all questions for each category
+		await Promise.all(
+			categories.map(async (category) => {
+				const questionsFound = await Question.findAll({
+					where: {CategoryId: category.id},
+					order: [["id", "ASC"]],
+				});
+				const tempData = questionsFound.map((question: any) => question.get());
+
+				data[category.category] = {
+					id: category.id,
+					questions: tempData,
+				};
+			})
+		);
 
 		res.json({
 			status: true,

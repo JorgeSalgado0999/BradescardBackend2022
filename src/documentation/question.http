@@ -4,7 +4,10 @@ Content-Type: application/json
 
 {
   "data":{
-    "question": "pregunta 1",
-    "CategoryId": 1
+    "question": "pregunta 3",
+    "CategoryId": 2
   }
 }
+
+### Get all questtions by categories
+GET http://localhost:3001/question/

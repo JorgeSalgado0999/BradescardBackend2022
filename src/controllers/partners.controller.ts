@@ -5,6 +5,7 @@ import {handleError} from "../helpers/securityFunctions";
 import Partner from "../models/Partner";
 import Store from "../models/Store";
 import PartnerInterface from "../interfaces/Partner";
+import {createSlug} from "../helpers/utils";
 
 export const createPartner = async (req: Request, res: Response) => {
 	try {
@@ -34,6 +35,7 @@ export const createPartner = async (req: Request, res: Response) => {
 
 		const newPartner = await Partner.create({
 			...partner,
+			slug: createSlug(partner.name),
 		});
 		console.log(newPartner);
 		res.json(newPartner);

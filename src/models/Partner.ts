@@ -14,6 +14,10 @@ const Partner = db.define("partners", {
 		type: DataTypes.STRING,
 		allowNull: false,
 	},
+	slug: {
+		type: DataTypes.STRING,
+		allowNull: false,
+	},
 	active: {
 		type: DataTypes.BOOLEAN,
 		allowNull: false,

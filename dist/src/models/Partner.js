@@ -17,6 +17,10 @@ const Partner = database_js_1.default.define("partners", {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
+    slug: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
     active: {
         type: sequelize_1.DataTypes.BOOLEAN,
         allowNull: false,

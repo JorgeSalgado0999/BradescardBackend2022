@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getQuestions = exports.createQuestion = void 0;
+exports.getQuestionsByCategorie = exports.getQuestions = exports.createQuestion = void 0;
 const sequelize_1 = require("sequelize");
 const securityFunctions_1 = require("../helpers/securityFunctions");
 const Question_1 = __importDefault(require("../models/Question"));
@@ -71,7 +71,7 @@ const getQuestions = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         if (name) {
             where = { slug: { [sequelize_1.Op.like]: "%" + name + "%" } };
         }
-        const categoriesFound = yield QuestionCategory_1.default.findAll({
+        const categoriesFound = yield Question_1.default.findAll({
             where: where,
             offset: _limit * _page,
             limit: _limit,
@@ -87,4 +87,39 @@ const getQuestions = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.getQuestions = getQuestions;
+const getQuestionsByCategorie = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        let data = {};
+        // first get all categories
+        const categoriesFound = yield QuestionCategory_1.default.findAll({
+            attributes: ["id", "category"],
+            order: [["id", "ASC"]],
+        });
+        const categories = categoriesFound.map((categorie) => categorie.get());
+        //This was necesary to avoid disorder
+        categories.map((category) => {
+            data[category.category] = {};
+        });
+        // now we look for all questions for each category
+        yield Promise.all(categories.map((category) => __awaiter(void 0, void 0, void 0, function* () {
+            const questionsFound = yield Question_1.default.findAll({
+                where: { CategoryId: category.id },
+                order: [["id", "ASC"]],
+            });
+            const tempData = questionsFound.map((question) => question.get());
+            data[category.category] = {
+                id: category.id,
+                questions: tempData,
+            };
+        })));
+        res.json({
+            status: true,
+            data,
+        });
+    }
+    catch (ex) {
+        (0, securityFunctions_1.handleError)(res, ex);
+    }
+});
+exports.getQuestionsByCategorie = getQuestionsByCategorie;
 //# sourceMappingURL=question.controller.js.map

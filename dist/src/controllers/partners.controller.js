@@ -17,6 +17,7 @@ const sequelize_1 = require("sequelize");
 const securityFunctions_1 = require("../helpers/securityFunctions");
 const Partner_1 = __importDefault(require("../models/Partner"));
 const Store_1 = __importDefault(require("../models/Store"));
+const utils_1 = require("../helpers/utils");
 const createPartner = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { data } = req.body;
@@ -39,7 +40,7 @@ const createPartner = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             });
             return;
         }
-        const newPartner = yield Partner_1.default.create(Object.assign({}, partner));
+        const newPartner = yield Partner_1.default.create(Object.assign(Object.assign({}, partner), { slug: (0, utils_1.createSlug)(partner.name) }));
         console.log(newPartner);
         res.json(newPartner);
     }

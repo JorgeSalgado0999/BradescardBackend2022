@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "data":{
-    "category": "categoria 1"
+    "category": "categoria 3"
   }
 }
 

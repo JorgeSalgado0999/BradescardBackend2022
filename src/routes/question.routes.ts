@@ -1,11 +1,15 @@
 import {Router} from "express";
 
-import {createQuestion, getQuestions} from "../controllers/question.controller";
+import {
+	createQuestion,
+	getQuestions,
+	getQuestionsByCategorie,
+} from "../controllers/question.controller";
 
 const QuestionRouter = Router();
 
 QuestionRouter.post("/", createQuestion);
 
-QuestionRouter.get("/", getQuestions);
+QuestionRouter.get("/", getQuestionsByCategorie);
 
 export default QuestionRouter;
