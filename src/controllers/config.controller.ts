@@ -60,6 +60,53 @@ export const createUserRoles = async (req: Request, res: Response) => {
 	}
 };
 
+export const createPartners = async (req: Request, res: Response) => {
+	try {
+		const partners = [
+			{name: "C&A"},
+			{name: "Bodega Aurrera"},
+			{name: "GCC"},
+			{name: "Promoda"},
+			{name: "Shasa"},
+		];
+
+		for (const partner of partners) {
+			await Partner.create({name: partner.name});
+		}
+
+		res.json({
+			status: true,
+		});
+	} catch (ex) {
+		console.log(ex);
+		handleError(res, ex);
+	}
+};
+
+export const createCategories = async (req: Request, res: Response) => {
+	try {
+		const categories = [
+			{category: "Seguridad de la información"},
+			{category: "Control y Custodia de plásticos"},
+			{category: "Productividad"},
+			{category: "Control de accesos y seguridad"},
+			{category: "Prevención de Fraudes"},
+			{category: "Políticas y procedimientos "},
+		];
+
+		for (const category of categories) {
+			await QuestionCategory.create({name: category.category});
+		}
+
+		res.json({
+			status: true,
+		});
+	} catch (ex) {
+		console.log(ex);
+		handleError(res, ex);
+	}
+};
+
 export const createStates = async (req: Request, res: Response) => {
 	try {
 		const states = [
