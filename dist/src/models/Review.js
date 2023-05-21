@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const database_js_1 = __importDefault(require("../database/database.js"));
+const ReviewAnswer_js_1 = __importDefault(require("./ReviewAnswer.js"));
 // import {Partner} from "./Partner.js";
 // import {Store} from "./Store.js";
 const Review = database_js_1.default.define("reviews", {
@@ -13,26 +14,30 @@ const Review = database_js_1.default.define("reviews", {
         primaryKey: true,
         autoIncrement: true,
     },
-    partnerID: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-    },
-    storeID: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-    },
     date: {
         type: sequelize_1.DataTypes.DATE,
         allowNull: false,
     },
-    rating: {
-        type: sequelize_1.DataTypes.INTEGER,
+    online: {
+        type: sequelize_1.DataTypes.BOOLEAN,
         allowNull: false,
     },
     type: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
+    rating: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+    },
 });
 exports.default = Review;
+Review.hasMany(ReviewAnswer_js_1.default, {
+    foreignKey: "ReviewId",
+    sourceKey: "id",
+});
+ReviewAnswer_js_1.default.belongsTo(Review, {
+    foreignKey: "ReviewId",
+    targetKey: "id",
+});
 //# sourceMappingURL=Review.js.map

@@ -12,21 +12,25 @@ import Partner from "../models/Partner";
 import Store from "../models/Store";
 import Question from "../models/Question";
 import QuestionCategory from "../models/QuestionCategory";
-import StoreQuestions from "../models/StoreQuestions";
+import PartnerQuestions from "../models/PartnerQuestions";
+import Review from "../models/Review";
+import ReviewAnswer from "../models/ReviewAnswer";
 
 export const syncDB = async (req: Request, res: Response) => {
 	try {
-		await UserRole.sync();
-		await User.sync();
-		await State.sync();
-		await City.sync();
-		await PostalCode.sync();
-		await Suburb.sync();
-		await Partner.sync();
-		await Store.sync();
-		await QuestionCategory.sync();
-		await Question.sync();
-		await StoreQuestions.sync();
+		await UserRole.sync({alter: {drop: false}});
+		await User.sync({alter: {drop: false}});
+		await State.sync({alter: {drop: false}});
+		await City.sync({alter: {drop: false}});
+		await PostalCode.sync({alter: {drop: false}});
+		await Suburb.sync({alter: {drop: false}});
+		await Partner.sync({alter: {drop: false}});
+		await Store.sync({alter: {drop: false}});
+		await QuestionCategory.sync({alter: {drop: false}});
+		await Question.sync({alter: {drop: false}});
+		await PartnerQuestions.sync({alter: {drop: false}});
+		await Review.sync({alter: {drop: false}});
+		await ReviewAnswer.sync({alter: {drop: false}});
 
 		res.json({
 			status: true,

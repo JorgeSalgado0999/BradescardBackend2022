@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getStores = exports.createStore = void 0;
 const securityFunctions_1 = require("../helpers/securityFunctions");
+const Partner_1 = __importDefault(require("../models/Partner"));
 const Store_1 = __importDefault(require("../models/Store"));
 const utils_1 = require("../helpers/utils");
 const State_1 = __importDefault(require("../models/State"));
@@ -36,7 +37,7 @@ const createStore = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             partnerId: data.partnerId,
         };
         // Validate Partner
-        const _partner = yield State_1.default.findOne({ where: { id: store.partnerId } });
+        const _partner = yield Partner_1.default.findOne({ where: { id: store.partnerId } });
         // Here we extract the obtain id and save it as PartnerId
         const { id: PartnerId } = _partner === null || _partner === void 0 ? void 0 : _partner.get();
         console.log("\n\n\n\n\n\n\n\nTodo bien con el partner: ", PartnerId);

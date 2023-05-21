@@ -1,0 +1,28 @@
+### Create new review
+POST http://localhost:3001/review/
+Content-Type: application/json
+
+{
+  "data":{
+    "date": "2021-01-01",
+    "online": true,
+    "type": "rutine",
+    "rating": 5,
+    "PartnerId": 1,
+    "StoreId": 1,
+    "questions":[
+      {
+        "QuestionId": 1,
+        "status": "textito2",
+        "comments": "textito3",
+        "plan": "textito4",
+        "date": "2021-01-01",
+        "breach": "textito5"
+      }
+    ]
+  }
+}
+
+
+### Get all reviews
+GET http://localhost:3001/review/

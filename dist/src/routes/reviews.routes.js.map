@@ -1,1 +1,1 @@
-{"version":3,"file":"reviews.routes.js","sourceRoot":"","sources":["../../../src/routes/reviews.routes.ts"],"names":[],"mappings":";AAAA,kCAAkC;AAElC,6EAA6E;AAE7E,2BAA2B;AAE3B,sCAAsC;AAEtC,yCAAyC;AAEzC,yBAAyB"}
+{"version":3,"file":"reviews.routes.js","sourceRoot":"","sources":["../../../src/routes/reviews.routes.ts"],"names":[],"mappings":";;AAAA,qCAA+B;AAE/B,wEAA0E;AAE1E,MAAM,MAAM,GAAG,IAAA,gBAAM,GAAE,CAAC;AAExB,MAAM,CAAC,GAAG,CAAC,UAAU,EAAE,8BAAU,CAAC,CAAC;AAEnC,MAAM,CAAC,IAAI,CAAC,UAAU,EAAE,gCAAY,CAAC,CAAC;AAEtC,kBAAe,MAAM,CAAC"}

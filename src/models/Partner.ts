@@ -34,20 +34,20 @@ Store.belongsTo(Partner, {
 	targetKey: "id",
 });
 
+//Reviews
 Partner.hasMany(Review, {
 	foreignKey: "PartnerId",
 	sourceKey: "id",
 });
-Store.hasMany(Review, {
-	foreignKey: "StoreId",
-	sourceKey: "id",
-});
-
 Review.belongsTo(Partner, {
 	foreignKey: "PartnerId",
 	targetKey: "id",
 });
 
+Store.hasMany(Review, {
+	foreignKey: "StoreId",
+	sourceKey: "id",
+});
 Review.belongsTo(Store, {
 	foreignKey: "StoreId",
 	targetKey: "id",

@@ -25,20 +25,24 @@ const Partner_1 = __importDefault(require("../models/Partner"));
 const Store_1 = __importDefault(require("../models/Store"));
 const Question_1 = __importDefault(require("../models/Question"));
 const QuestionCategory_1 = __importDefault(require("../models/QuestionCategory"));
-const StoreQuestions_1 = __importDefault(require("../models/StoreQuestions"));
+const PartnerQuestions_1 = __importDefault(require("../models/PartnerQuestions"));
+const Review_1 = __importDefault(require("../models/Review"));
+const ReviewAnswer_1 = __importDefault(require("../models/ReviewAnswer"));
 const syncDB = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield UserRole_1.default.sync();
-        yield User_1.default.sync();
-        yield State_1.default.sync();
-        yield City_1.default.sync();
-        yield PostalCode_1.default.sync();
-        yield Suburb_1.default.sync();
-        yield Partner_1.default.sync();
-        yield Store_1.default.sync();
-        yield QuestionCategory_1.default.sync();
-        yield Question_1.default.sync();
-        yield StoreQuestions_1.default.sync();
+        yield UserRole_1.default.sync({ alter: { drop: false } });
+        yield User_1.default.sync({ alter: { drop: false } });
+        yield State_1.default.sync({ alter: { drop: false } });
+        yield City_1.default.sync({ alter: { drop: false } });
+        yield PostalCode_1.default.sync({ alter: { drop: false } });
+        yield Suburb_1.default.sync({ alter: { drop: false } });
+        yield Partner_1.default.sync({ alter: { drop: false } });
+        yield Store_1.default.sync({ alter: { drop: false } });
+        yield QuestionCategory_1.default.sync({ alter: { drop: false } });
+        yield Question_1.default.sync({ alter: { drop: false } });
+        yield PartnerQuestions_1.default.sync({ alter: { drop: false } });
+        yield Review_1.default.sync({ alter: { drop: false } });
+        yield ReviewAnswer_1.default.sync({ alter: { drop: false } });
         res.json({
             status: true,
         });

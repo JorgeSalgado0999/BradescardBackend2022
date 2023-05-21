@@ -35,17 +35,18 @@ Store_1.default.belongsTo(Partner, {
     foreignKey: "PartnerId",
     targetKey: "id",
 });
+//Reviews
 Partner.hasMany(Review_1.default, {
     foreignKey: "PartnerId",
-    sourceKey: "id",
-});
-Store_1.default.hasMany(Review_1.default, {
-    foreignKey: "StoreId",
     sourceKey: "id",
 });
 Review_1.default.belongsTo(Partner, {
     foreignKey: "PartnerId",
     targetKey: "id",
+});
+Store_1.default.hasMany(Review_1.default, {
+    foreignKey: "StoreId",
+    sourceKey: "id",
 });
 Review_1.default.belongsTo(Store_1.default, {
     foreignKey: "StoreId",

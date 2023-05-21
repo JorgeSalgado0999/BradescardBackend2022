@@ -3,9 +3,9 @@ import db from "../database/database.js";
 
 import Partner from "./Partner";
 import State from "./State";
-import Suburb from "./Suburb.js";
-import PostalCode from "./PostalCode.js";
-// import {Review} from "./Review";
+import Suburb from "./Suburb";
+import PostalCode from "./PostalCode";
+import Review from "./Review";
 
 const Store = db.define("stores", {
 	id: {

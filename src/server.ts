@@ -15,6 +15,7 @@ import StoreRouter from "./routes/store.routes";
 import QuestionCategoryRouter from "./routes/questionCategory.routes";
 import ReviewAnswersRouter from "./routes/reviewAnswers.routes";
 import QuestionRouter from "./routes/question.routes";
+import ReviewRouter from "./routes/review.routes";
 
 class Server {
 	public app: Application;
@@ -32,6 +33,7 @@ class Server {
 			store: "/store/",
 			questionategory: "/question-category/",
 			question: "/question/",
+			review: "/review/",
 		};
 
 		this.dbConnection();
@@ -68,6 +70,7 @@ class Server {
 		this.app.use(this.apiPaths.store, StoreRouter);
 		this.app.use(this.apiPaths.questionategory, QuestionCategoryRouter);
 		this.app.use(this.apiPaths.question, QuestionRouter);
+		this.app.use(this.apiPaths.review, ReviewRouter);
 	}
 
 	public listen() {

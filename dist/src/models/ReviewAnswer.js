@@ -13,10 +13,6 @@ const ReviewAnswer = database_js_1.default.define("reviewsAnswers", {
         primaryKey: true,
         autoIncrement: true,
     },
-    QuestionId: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-    },
     status: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,

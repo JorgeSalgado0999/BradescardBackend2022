@@ -28,7 +28,7 @@ export const createStore = async (req: Request, res: Response) => {
 		};
 
 		// Validate Partner
-		const _partner = await State.findOne({where: {id: store.partnerId}});
+		const _partner = await Partner.findOne({where: {id: store.partnerId}});
 		// Here we extract the obtain id and save it as PartnerId
 		const {id: PartnerId} = _partner?.get();
 		console.log("\n\n\n\n\n\n\n\nTodo bien con el partner: ", PartnerId);

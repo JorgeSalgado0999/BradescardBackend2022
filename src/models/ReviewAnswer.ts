@@ -10,10 +10,6 @@ const ReviewAnswer = db.define("reviewsAnswers", {
 		primaryKey: true,
 		autoIncrement: true,
 	},
-	QuestionId: {
-		type: DataTypes.INTEGER,
-		allowNull: false,
-	},
 	status: {
 		type: DataTypes.STRING,
 		allowNull: false,

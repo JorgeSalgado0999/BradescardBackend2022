@@ -48,6 +48,7 @@ const partner_routes_1 = __importDefault(require("./routes/partner.routes"));
 const store_routes_1 = __importDefault(require("./routes/store.routes"));
 const questionCategory_routes_1 = __importDefault(require("./routes/questionCategory.routes"));
 const question_routes_1 = __importDefault(require("./routes/question.routes"));
+const review_routes_1 = __importDefault(require("./routes/review.routes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -60,6 +61,7 @@ class Server {
             store: "/store/",
             questionategory: "/question-category/",
             question: "/question/",
+            review: "/review/",
         };
         this.dbConnection();
         this.middlewares();
@@ -95,6 +97,7 @@ class Server {
         this.app.use(this.apiPaths.store, store_routes_1.default);
         this.app.use(this.apiPaths.questionategory, questionCategory_routes_1.default);
         this.app.use(this.apiPaths.question, question_routes_1.default);
+        this.app.use(this.apiPaths.review, review_routes_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {
