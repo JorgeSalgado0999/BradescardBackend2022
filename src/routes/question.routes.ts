@@ -10,6 +10,7 @@ const QuestionRouter = Router();
 
 QuestionRouter.post("/", createQuestion);
 
-QuestionRouter.get("/", getQuestionsByCategorie);
+QuestionRouter.get("/", getQuestions);
+QuestionRouter.get("/by-category", getQuestionsByCategorie);
 
 export default QuestionRouter;

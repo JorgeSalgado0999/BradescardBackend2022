@@ -12,15 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createStates = exports.createUserRoles = exports.syncDB = void 0;
+exports.createCategories = exports.createPartners = exports.createUserRoles = exports.syncDB = void 0;
 const securityFunctions_1 = require("../helpers/securityFunctions");
 const utils_1 = require("../helpers/utils");
 const UserRole_1 = __importDefault(require("../models/UserRole"));
 const User_1 = __importDefault(require("../models/User"));
-const State_1 = __importDefault(require("../models/State"));
-const City_1 = __importDefault(require("../models/City"));
-const PostalCode_1 = __importDefault(require("../models/PostalCode"));
-const Suburb_1 = __importDefault(require("../models/Suburb"));
 const Partner_1 = __importDefault(require("../models/Partner"));
 const Store_1 = __importDefault(require("../models/Store"));
 const Question_1 = __importDefault(require("../models/Question"));
@@ -32,10 +28,6 @@ const syncDB = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield UserRole_1.default.sync({ alter: { drop: false } });
         yield User_1.default.sync({ alter: { drop: false } });
-        yield State_1.default.sync({ alter: { drop: false } });
-        yield City_1.default.sync({ alter: { drop: false } });
-        yield PostalCode_1.default.sync({ alter: { drop: false } });
-        yield Suburb_1.default.sync({ alter: { drop: false } });
         yield Partner_1.default.sync({ alter: { drop: false } });
         yield Store_1.default.sync({ alter: { drop: false } });
         yield QuestionCategory_1.default.sync({ alter: { drop: false } });
@@ -75,45 +67,20 @@ const createUserRoles = (req, res) => __awaiter(void 0, void 0, void 0, function
     }
 });
 exports.createUserRoles = createUserRoles;
-const createStates = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const createPartners = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const states = [
-            "Aguascalientes",
-            "Baja California",
-            "Baja California Sur",
-            "Campeche",
-            "Chiapas",
-            "Chihuahua",
-            "Coahuila",
-            "Colima",
-            "Ciudad de México",
-            "Durango",
-            "Guanajuato",
-            "Guerrero",
-            "Hidalgo",
-            "Jalisco",
-            "Estado de México",
-            "Michoacán",
-            "Morelos",
-            "Nayarit",
-            "Nuevo León",
-            "Oaxaca",
-            "Puebla",
-            "Querétaro",
-            "Quintana Roo",
-            "San Luis Potosí",
-            "Sinaloa",
-            "Sonora",
-            "Tabasco",
-            "Tamaulipas",
-            "Tlaxcala",
-            "Veracruz",
-            "Yucatán",
-            "Zacatecas",
+        const partners = [
+            { name: "C&A" },
+            { name: "Bodega Aurrera" },
+            { name: "GCC" },
+            { name: "Promoda" },
+            { name: "Shasa" },
         ];
-        for (const state of states) {
-            const slug = (0, utils_1.createSlug)(state);
-            yield State_1.default.create({ name: state, slug: slug });
+        for (const partner of partners) {
+            yield Partner_1.default.create({
+                name: partner.name,
+                slug: (0, utils_1.createSlug)(partner.name),
+            });
         }
         res.json({
             status: true,
@@ -124,5 +91,79 @@ const createStates = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         (0, securityFunctions_1.handleError)(res, ex);
     }
 });
-exports.createStates = createStates;
+exports.createPartners = createPartners;
+const createCategories = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const categories = [
+            { category: "Seguridad de la información" },
+            { category: "Control y Custodia de plásticos" },
+            { category: "Productividad" },
+            { category: "Control de accesos y seguridad" },
+            { category: "Prevención de Fraudes" },
+            { category: "Políticas y procedimientos " },
+        ];
+        for (const category of categories) {
+            yield QuestionCategory_1.default.create({
+                category: category.category,
+                slug: (0, utils_1.createSlug)(category.category),
+            });
+        }
+        res.json({
+            status: true,
+        });
+    }
+    catch (ex) {
+        console.log(ex);
+        (0, securityFunctions_1.handleError)(res, ex);
+    }
+});
+exports.createCategories = createCategories;
+// export const createStates = async (req: Request, res: Response) => {
+// 	try {
+// 		const states = [
+// 			"Aguascalientes",
+// 			"Baja California",
+// 			"Baja California Sur",
+// 			"Campeche",
+// 			"Chiapas",
+// 			"Chihuahua",
+// 			"Coahuila",
+// 			"Colima",
+// 			"Ciudad de México",
+// 			"Durango",
+// 			"Guanajuato",
+// 			"Guerrero",
+// 			"Hidalgo",
+// 			"Jalisco",
+// 			"Estado de México",
+// 			"Michoacán",
+// 			"Morelos",
+// 			"Nayarit",
+// 			"Nuevo León",
+// 			"Oaxaca",
+// 			"Puebla",
+// 			"Querétaro",
+// 			"Quintana Roo",
+// 			"San Luis Potosí",
+// 			"Sinaloa",
+// 			"Sonora",
+// 			"Tabasco",
+// 			"Tamaulipas",
+// 			"Tlaxcala",
+// 			"Veracruz",
+// 			"Yucatán",
+// 			"Zacatecas",
+// 		];
+// 		for (const state of states) {
+// 			const slug = createSlug(state);
+// 			await State.create({name: state, slug: slug});
+// 		}
+// 		res.json({
+// 			status: true,
+// 		});
+// 	} catch (ex) {
+// 		console.log(ex);
+// 		handleError(res, ex);
+// 	}
+// };
 //# sourceMappingURL=config.controller.js.map

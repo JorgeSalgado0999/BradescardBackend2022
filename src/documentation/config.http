@@ -6,3 +6,7 @@ GET http://localhost:3001/config/sync-db
 GET http://localhost:3001/config/createUserRoles
 ### Create States 
 GET http://localhost:3001/config/createStates
+### Create Partners 
+GET http://localhost:3001/config/createPartners
+### Create Categories 
+GET http://localhost:3001/config/createCategories

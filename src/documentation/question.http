@@ -8,6 +8,8 @@ Content-Type: application/json
     "CategoryId": 2
   }
 }
+### Get all questtions 
+GET http://localhost:3001/question/
 
 ### Get all questtions by categories
-GET http://localhost:3001/question/
+GET http://localhost:3001/question/by-category

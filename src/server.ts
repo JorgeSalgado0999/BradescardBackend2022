@@ -13,9 +13,9 @@ import AuthRouter from "./routes/auth.routes";
 import PartnerRouter from "./routes/partner.routes";
 import StoreRouter from "./routes/store.routes";
 import QuestionCategoryRouter from "./routes/questionCategory.routes";
-import ReviewAnswersRouter from "./routes/reviewAnswers.routes";
 import QuestionRouter from "./routes/question.routes";
 import ReviewRouter from "./routes/review.routes";
+import partnerQuestionRouter from "./routes/partnerQuestions.routes";
 
 class Server {
 	public app: Application;
@@ -33,6 +33,7 @@ class Server {
 			store: "/store/",
 			questionategory: "/question-category/",
 			question: "/question/",
+			questionPartner: "/question-partner/",
 			review: "/review/",
 		};
 
@@ -71,6 +72,7 @@ class Server {
 		this.app.use(this.apiPaths.questionategory, QuestionCategoryRouter);
 		this.app.use(this.apiPaths.question, QuestionRouter);
 		this.app.use(this.apiPaths.review, ReviewRouter);
+		this.app.use(this.apiPaths.questionPartner, partnerQuestionRouter);
 	}
 
 	public listen() {

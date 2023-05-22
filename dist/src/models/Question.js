@@ -16,6 +16,15 @@ const Question = database_js_1.default.define("questions", {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
+    slug: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
+    active: {
+        type: sequelize_1.DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+    },
 });
 exports.default = Question;
 Question.hasMany(ReviewAnswer_js_1.default, {

@@ -1,0 +1,21 @@
+### add questions to partner
+POST http://localhost:3001/question-partner/
+Content-Type: application/json
+
+{
+  "data":{
+    "partner": 1,
+    "questions": [{
+      "questionId": 1,
+      "online": true
+    },
+    {
+      "questionId": 2,
+      "online": false
+    }
+    ]
+  }
+}
+
+### Get questions by partner
+GET http://localhost:3001/question-partner/

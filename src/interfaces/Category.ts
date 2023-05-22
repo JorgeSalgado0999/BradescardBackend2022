@@ -1,4 +1,4 @@
-interface CategorieInterface {
+interface CategoryInterface {
 	id?: number;
 	category: string;
 	slug: string;
@@ -7,4 +7,4 @@ interface CategorieInterface {
 	updatedAt?: Date;
 }
 
-export default CategorieInterface;
+export default CategoryInterface;

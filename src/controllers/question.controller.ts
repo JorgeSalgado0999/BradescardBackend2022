@@ -5,6 +5,9 @@ import {handleError} from "../helpers/securityFunctions";
 import QuestionInterface from "../interfaces/Question";
 import Question from "../models/Question";
 import QuestionCategory from "../models/QuestionCategory";
+import CategorieInterface from "../interfaces/Category";
+import CategoryInterface from "../interfaces/Category";
+import {createSlug} from "../helpers/utils";
 
 export const createQuestion = async (req: Request, res: Response) => {
 	console.log("entró aquí");
@@ -47,6 +50,7 @@ export const createQuestion = async (req: Request, res: Response) => {
 
 		const newQuestion = await Question.create({
 			question: question.question,
+			slug: createSlug(question.question),
 			CategoryId,
 		});
 		res.json(newQuestion);
@@ -73,7 +77,24 @@ export const getQuestions = async (req: Request, res: Response) => {
 			offset: _limit * _page,
 			limit: _limit,
 		});
-		const data = categoriesFound.map((partner: any) => partner.get());
+		const questions = categoriesFound.map((partner: any) => partner.get());
+
+		const data: any = [];
+
+		await Promise.all(
+			questions.map(async (question: any) => {
+				const currentCategory: any = await QuestionCategory.findOne({
+					where: {id: question.CategoryId},
+					attributes: ["category"],
+				});
+				console.log("currentCategory", currentCategory);
+				data.push({
+					id: question.id,
+					question: question.question,
+					category: currentCategory.category,
+				});
+			})
+		);
 
 		res.json({
 			status: true,

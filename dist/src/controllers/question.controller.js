@@ -17,6 +17,7 @@ const sequelize_1 = require("sequelize");
 const securityFunctions_1 = require("../helpers/securityFunctions");
 const Question_1 = __importDefault(require("../models/Question"));
 const QuestionCategory_1 = __importDefault(require("../models/QuestionCategory"));
+const utils_1 = require("../helpers/utils");
 const createQuestion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("entró aquí");
     try {
@@ -53,6 +54,7 @@ const createQuestion = (req, res) => __awaiter(void 0, void 0, void 0, function*
         console.log("Categoiria correcta");
         const newQuestion = yield Question_1.default.create({
             question: question.question,
+            slug: (0, utils_1.createSlug)(question.question),
             CategoryId,
         });
         res.json(newQuestion);
@@ -76,7 +78,20 @@ const getQuestions = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             offset: _limit * _page,
             limit: _limit,
         });
-        const data = categoriesFound.map((partner) => partner.get());
+        const questions = categoriesFound.map((partner) => partner.get());
+        const data = [];
+        yield Promise.all(questions.map((question) => __awaiter(void 0, void 0, void 0, function* () {
+            const currentCategory = yield QuestionCategory_1.default.findOne({
+                where: { id: question.CategoryId },
+                attributes: ["category"],
+            });
+            console.log("currentCategory", currentCategory);
+            data.push({
+                id: question.id,
+                question: question.question,
+                category: currentCategory.category,
+            });
+        })));
         res.json({
             status: true,
             data,

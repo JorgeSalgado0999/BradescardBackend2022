@@ -4,10 +4,6 @@ import {createSlug} from "../helpers/utils";
 import UserRole from "../models/UserRole";
 
 import User from "../models/User";
-import State from "../models/State";
-import City from "../models/City";
-import PostalCode from "../models/PostalCode";
-import Suburb from "../models/Suburb";
 import Partner from "../models/Partner";
 import Store from "../models/Store";
 import Question from "../models/Question";
@@ -20,10 +16,6 @@ export const syncDB = async (req: Request, res: Response) => {
 	try {
 		await UserRole.sync({alter: {drop: false}});
 		await User.sync({alter: {drop: false}});
-		await State.sync({alter: {drop: false}});
-		await City.sync({alter: {drop: false}});
-		await PostalCode.sync({alter: {drop: false}});
-		await Suburb.sync({alter: {drop: false}});
 		await Partner.sync({alter: {drop: false}});
 		await Store.sync({alter: {drop: false}});
 		await QuestionCategory.sync({alter: {drop: false}});
@@ -75,7 +67,10 @@ export const createPartners = async (req: Request, res: Response) => {
 		];
 
 		for (const partner of partners) {
-			await Partner.create({name: partner.name});
+			await Partner.create({
+				name: partner.name,
+				slug: createSlug(partner.name),
+			});
 		}
 
 		res.json({
@@ -99,7 +94,10 @@ export const createCategories = async (req: Request, res: Response) => {
 		];
 
 		for (const category of categories) {
-			await QuestionCategory.create({name: category.category});
+			await QuestionCategory.create({
+				category: category.category,
+				slug: createSlug(category.category),
+			});
 		}
 
 		res.json({
@@ -111,53 +109,53 @@ export const createCategories = async (req: Request, res: Response) => {
 	}
 };
 
-export const createStates = async (req: Request, res: Response) => {
-	try {
-		const states = [
-			"Aguascalientes",
-			"Baja California",
-			"Baja California Sur",
-			"Campeche",
-			"Chiapas",
-			"Chihuahua",
-			"Coahuila",
-			"Colima",
-			"Ciudad de México",
-			"Durango",
-			"Guanajuato",
-			"Guerrero",
-			"Hidalgo",
-			"Jalisco",
-			"Estado de México",
-			"Michoacán",
-			"Morelos",
-			"Nayarit",
-			"Nuevo León",
-			"Oaxaca",
-			"Puebla",
-			"Querétaro",
-			"Quintana Roo",
-			"San Luis Potosí",
-			"Sinaloa",
-			"Sonora",
-			"Tabasco",
-			"Tamaulipas",
-			"Tlaxcala",
-			"Veracruz",
-			"Yucatán",
-			"Zacatecas",
-		];
+// export const createStates = async (req: Request, res: Response) => {
+// 	try {
+// 		const states = [
+// 			"Aguascalientes",
+// 			"Baja California",
+// 			"Baja California Sur",
+// 			"Campeche",
+// 			"Chiapas",
+// 			"Chihuahua",
+// 			"Coahuila",
+// 			"Colima",
+// 			"Ciudad de México",
+// 			"Durango",
+// 			"Guanajuato",
+// 			"Guerrero",
+// 			"Hidalgo",
+// 			"Jalisco",
+// 			"Estado de México",
+// 			"Michoacán",
+// 			"Morelos",
+// 			"Nayarit",
+// 			"Nuevo León",
+// 			"Oaxaca",
+// 			"Puebla",
+// 			"Querétaro",
+// 			"Quintana Roo",
+// 			"San Luis Potosí",
+// 			"Sinaloa",
+// 			"Sonora",
+// 			"Tabasco",
+// 			"Tamaulipas",
+// 			"Tlaxcala",
+// 			"Veracruz",
+// 			"Yucatán",
+// 			"Zacatecas",
+// 		];
 
-		for (const state of states) {
-			const slug = createSlug(state);
-			await State.create({name: state, slug: slug});
-		}
+// 		for (const state of states) {
+// 			const slug = createSlug(state);
+// 			await State.create({name: state, slug: slug});
+// 		}
 
-		res.json({
-			status: true,
-		});
-	} catch (ex) {
-		console.log(ex);
-		handleError(res, ex);
-	}
-};
+// 		res.json({
+// 			status: true,
+// 		});
+// 	} catch (ex) {
+// 		console.log(ex);
+// 		handleError(res, ex);
+// 	}
+// };

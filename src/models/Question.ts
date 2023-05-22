@@ -13,6 +13,15 @@ const Question = db.define("questions", {
 		type: DataTypes.STRING,
 		allowNull: false,
 	},
+	slug: {
+		type: DataTypes.STRING,
+		allowNull: false,
+	},
+	active: {
+		type: DataTypes.BOOLEAN,
+		allowNull: false,
+		defaultValue: true,
+	},
 });
 
 export default Question;
