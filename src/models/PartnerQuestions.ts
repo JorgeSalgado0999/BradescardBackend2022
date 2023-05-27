@@ -2,6 +2,7 @@ import Sequelize, {DataTypes} from "sequelize";
 import db from "../database/database";
 import Question from "./Question";
 import Partner from "./Partner";
+import QuestionCategory from "./QuestionCategory";
 
 const PartnerQuestions = db.define("partnerQuestions", {
 	id: {
@@ -31,5 +32,13 @@ Partner.hasMany(PartnerQuestions, {
 });
 PartnerQuestions.belongsTo(Partner, {
 	foreignKey: "PartnerId",
+	targetKey: "id",
+});
+QuestionCategory.hasMany(PartnerQuestions, {
+	foreignKey: "CategoryId",
+	sourceKey: "id",
+});
+PartnerQuestions.belongsTo(QuestionCategory, {
+	foreignKey: "CategoryId",
 	targetKey: "id",
 });

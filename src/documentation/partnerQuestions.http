@@ -4,13 +4,14 @@ Content-Type: application/json
 
 {
   "data":{
-    "partner": 1,
-    "questions": [{
-      "questionId": 1,
+    "partnerId": 6,
+    "questions": [
+      {
+      "questionId": 9,
       "online": true
     },
     {
-      "questionId": 2,
+      "questionId": 10,
       "online": false
     }
     ]
@@ -18,4 +19,4 @@ Content-Type: application/json
 }
 
 ### Get questions by partner
-GET http://localhost:3001/question-partner/
+GET http://localhost:3001/question-partner/7

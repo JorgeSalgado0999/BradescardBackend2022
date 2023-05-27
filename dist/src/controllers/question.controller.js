@@ -73,12 +73,13 @@ const getQuestions = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         if (name) {
             where = { slug: { [sequelize_1.Op.like]: "%" + name + "%" } };
         }
-        const categoriesFound = yield Question_1.default.findAll({
+        const questionsFound = yield Question_1.default.findAll({
             where: where,
             offset: _limit * _page,
             limit: _limit,
+            order: [["id", "ASC"]],
         });
-        const questions = categoriesFound.map((partner) => partner.get());
+        const questions = questionsFound.map((question) => question.get());
         const data = [];
         yield Promise.all(questions.map((question) => __awaiter(void 0, void 0, void 0, function* () {
             const currentCategory = yield QuestionCategory_1.default.findOne({

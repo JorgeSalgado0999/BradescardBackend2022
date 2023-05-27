@@ -7,6 +7,7 @@ const sequelize_1 = require("sequelize");
 const database_1 = __importDefault(require("../database/database"));
 const Question_1 = __importDefault(require("./Question"));
 const Partner_1 = __importDefault(require("./Partner"));
+const QuestionCategory_1 = __importDefault(require("./QuestionCategory"));
 const PartnerQuestions = database_1.default.define("partnerQuestions", {
     id: {
         type: sequelize_1.DataTypes.INTEGER,
@@ -33,6 +34,14 @@ Partner_1.default.hasMany(PartnerQuestions, {
 });
 PartnerQuestions.belongsTo(Partner_1.default, {
     foreignKey: "PartnerId",
+    targetKey: "id",
+});
+QuestionCategory_1.default.hasMany(PartnerQuestions, {
+    foreignKey: "CategoryId",
+    sourceKey: "id",
+});
+PartnerQuestions.belongsTo(QuestionCategory_1.default, {
+    foreignKey: "CategoryId",
     targetKey: "id",
 });
 //# sourceMappingURL=PartnerQuestions.js.map

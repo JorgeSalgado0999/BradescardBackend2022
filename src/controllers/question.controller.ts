@@ -72,12 +72,13 @@ export const getQuestions = async (req: Request, res: Response) => {
 			where = {slug: {[Op.like]: "%" + name + "%"}};
 		}
 
-		const categoriesFound = await Question.findAll({
+		const questionsFound = await Question.findAll({
 			where: where,
 			offset: _limit * _page,
 			limit: _limit,
+			order: [["id", "ASC"]],
 		});
-		const questions = categoriesFound.map((partner: any) => partner.get());
+		const questions = questionsFound.map((question: any) => question.get());
 
 		const data: any = [];
 
