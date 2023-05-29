@@ -6,6 +6,7 @@ interface QuestionInterface {
 	plan: string;
 	date: string;
 	breach: string;
+	QuestionId: string;
 
 	createdAt?: Date;
 	updatedAt?: Date;

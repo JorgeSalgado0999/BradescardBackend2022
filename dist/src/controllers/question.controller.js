@@ -33,6 +33,7 @@ const createQuestion = (req, res) => __awaiter(void 0, void 0, void 0, function*
         const question = {
             question: data.question,
             CategoryId: data.CategoryId,
+            riskLevel: data.riskLevel,
         };
         console.log("question", question);
         //VALIDATE FIELDS
@@ -54,6 +55,7 @@ const createQuestion = (req, res) => __awaiter(void 0, void 0, void 0, function*
         console.log("Categoiria correcta");
         const newQuestion = yield Question_1.default.create({
             question: question.question,
+            riskLevel: question.riskLevel,
             slug: (0, utils_1.createSlug)(question.question),
             CategoryId,
         });
@@ -91,6 +93,7 @@ const getQuestions = (req, res) => __awaiter(void 0, void 0, void 0, function* (
                 id: question.id,
                 question: question.question,
                 category: currentCategory.category,
+                riskLevel: question.riskLevel,
             });
         })));
         res.json({

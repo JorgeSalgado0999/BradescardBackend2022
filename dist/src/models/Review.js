@@ -18,11 +18,23 @@ const Review = database_js_1.default.define("reviews", {
         type: sequelize_1.DataTypes.DATE,
         allowNull: false,
     },
+    startTime: {
+        type: sequelize_1.DataTypes.TIME,
+        allowNull: false,
+    },
+    endTime: {
+        type: sequelize_1.DataTypes.TIME,
+        allowNull: false,
+    },
     online: {
         type: sequelize_1.DataTypes.BOOLEAN,
         allowNull: false,
     },
     type: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
+    contactName: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },

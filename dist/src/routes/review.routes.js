@@ -5,5 +5,6 @@ const review_controller_1 = require("../controllers/review.controller");
 const ReviewRouter = (0, express_1.Router)();
 ReviewRouter.get("/", review_controller_1.getReviews);
 ReviewRouter.post("/", review_controller_1.createReview);
+ReviewRouter.get("/questions", review_controller_1.getReviewQuestions);
 exports.default = ReviewRouter;
 //# sourceMappingURL=review.routes.js.map

@@ -16,19 +16,19 @@ const ReviewAnswer = db.define("reviewsAnswers", {
 	},
 	comments: {
 		type: DataTypes.STRING,
-		allowNull: false,
+		allowNull: true,
 	},
 	plan: {
 		type: DataTypes.STRING,
-		allowNull: false,
+		allowNull: true,
 	},
 	date: {
 		type: DataTypes.STRING,
-		allowNull: false,
+		allowNull: true,
 	},
 	breach: {
 		type: DataTypes.STRING,
-		allowNull: false,
+		allowNull: true,
 	},
 });
 

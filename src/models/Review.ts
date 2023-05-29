@@ -17,11 +17,23 @@ const Review = db.define("reviews", {
 		type: DataTypes.DATE,
 		allowNull: false,
 	},
+	startTime: {
+		type: DataTypes.TIME,
+		allowNull: false,
+	},
+	endTime: {
+		type: DataTypes.TIME,
+		allowNull: false,
+	},
 	online: {
 		type: DataTypes.BOOLEAN,
 		allowNull: false,
 	},
 	type: {
+		type: DataTypes.STRING,
+		allowNull: false,
+	},
+	contactName: {
 		type: DataTypes.STRING,
 		allowNull: false,
 	},

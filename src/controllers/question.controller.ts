@@ -26,6 +26,7 @@ export const createQuestion = async (req: Request, res: Response) => {
 		const question: QuestionInterface = {
 			question: data.question,
 			CategoryId: data.CategoryId,
+			riskLevel: data.riskLevel,
 		};
 		console.log("question", question);
 
@@ -50,6 +51,7 @@ export const createQuestion = async (req: Request, res: Response) => {
 
 		const newQuestion = await Question.create({
 			question: question.question,
+			riskLevel: question.riskLevel,
 			slug: createSlug(question.question),
 			CategoryId,
 		});
@@ -93,6 +95,7 @@ export const getQuestions = async (req: Request, res: Response) => {
 					id: question.id,
 					question: question.question,
 					category: currentCategory.category,
+					riskLevel: question.riskLevel,
 				});
 			})
 		);

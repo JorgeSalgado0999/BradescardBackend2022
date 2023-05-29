@@ -16,6 +16,10 @@ const Question = database_js_1.default.define("questions", {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
+    riskLevel: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+    },
     slug: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,

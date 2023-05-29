@@ -4,16 +4,19 @@ Content-Type: application/json
 
 {
   "data":{
+    "PartnerId": 6,
+    "StoreId": 1,
+    "contactName": "raul",
     "date": "2021-01-01",
+    "startTime": "10:40",
+    "endTime": "12:40",
     "online": true,
     "type": "rutine",
     "rating": 5,
-    "PartnerId": 1,
-    "StoreId": 1,
     "questions":[
       {
-        "QuestionId": 1,
-        "status": "textito2",
+        "QuestionId": 9,
+        "status": "correcto",
         "comments": "textito3",
         "plan": "textito4",
         "date": "2021-01-01",
@@ -26,3 +29,7 @@ Content-Type: application/json
 
 ### Get all reviews
 GET http://localhost:3001/review/
+
+
+### Get all questions by partner and online
+GET http://localhost:3001/review/questions/?partnerId=7&online=true

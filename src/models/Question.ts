@@ -13,6 +13,10 @@ const Question = db.define("questions", {
 		type: DataTypes.STRING,
 		allowNull: false,
 	},
+	riskLevel: {
+		type: DataTypes.INTEGER,
+		allowNull: false,
+	},
 	slug: {
 		type: DataTypes.STRING,
 		allowNull: false,
