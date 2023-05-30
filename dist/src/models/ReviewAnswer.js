@@ -14,7 +14,7 @@ const ReviewAnswer = database_js_1.default.define("reviewsAnswers", {
         autoIncrement: true,
     },
     status: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.NUMBER,
         allowNull: false,
     },
     comments: {
